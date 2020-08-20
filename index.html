@@ -12,364 +12,1512 @@
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
-  <!-- Place favicon.ico in the root directory -->
-
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/main.css">
-
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700&display=swap" rel="stylesheet">
   <meta name="theme-color" content="#fafafa">
+
+  <style>
+    .matrix.mobile{
+      display: none;
+      border-collapse: collapse;
+    }
+    .matrix.mobile th{
+      text-transform: uppercase;
+    }
+    .matrix.mobile th:nth-child(2){
+      border: 2px solid #d3d3d3;
+    }
+    .matrix.mobile .concepts th.concept_header{
+      background-color: white;
+    }
+    .matrix.mobile .matrix_header th:nth-child(2){
+      background-color: rgb(0, 51, 102);
+      color: white;
+    }
+    .matrix.mobile .concepts th{
+      background-color: rgb(243, 200, 69);
+    }
+    .matrix.mobile .concepts td:nth-child(2){
+      border: 2px solid #d3d3d3;
+    }
+    @media (max-width: 1000px) {
+      .matrix{
+        display: none;
+      }
+      .matrix.mobile{
+        display: table;
+      }
+    }
+    table.matrix{
+      width: 100%;
+      font-family: 'Montserrat', sans-serif;
+      border-spacing: 0;
+      border: 2px solid #d3d3d3;
+      border-collapse: separate !important;
+      font-size: 0.8em;
+    }
+    .matrix th, .matrix td{
+      padding: 10px;
+      vertical-align: top;
+      width: 14%;
+    }
+    .matrix thead th{
+      color: black;
+      background-color: rgb(243, 200, 69);
+      border-bottom: 2px solid #d3d3d3;
+      border-right: 2px solid #d3d3d3;
+    }
+    .matrix thead .nostyle{
+      color: black;
+      background-color: white;
+    }
+    .matrix th{
+      text-transform: uppercase;
+      text-align: left;
+    }
+    .matrix th p{
+      text-transform: capitalize;
+      font-weight: lighter;
+      font-size: 90%;
+    }
+    .matrix span{
+      padding: 5px;
+      text-transform: uppercase;
+      font-weight: bold;
+      box-sizing: border-box;
+      display: inline-block;
+    }
+    .matrix h4{
+      text-align: center;
+    }
+    .matrix .element th .element_head{
+      display: flex;
+    }
+    .matrix .element th span.up{
+      display: none;
+    }
+    .matrix .element th span{
+      display: inline-block;
+    }
+    .matrix .element.hidden th span.caret:after{
+      content: '\25B2';
+    }
+    .matrix .element th span.caret:after{
+      content: '\25BC';
+    }
+    .matrix .element.matrix_header th{
+      border-top:  2px solid #d3d3d3;
+    }
+    .matrix .element h4{
+      display: none;
+    }
+    .matrix .element th:first-child{
+      background-color: white;
+      color: black;
+      border-right: 2px solid #d3d3d3;
+      border-bottom: none;
+    }
+    .matrix .element th{
+      background-color: rgb(45, 52, 107);
+      color: #fff;
+      border-right: none;
+      border-bottom: 2px solid #efefef;
+    }
+    .matrix .element th{
+      background-color: rgb(45, 52, 107);
+      color: white;
+    }
+    .matrix .element.disabled th:first-child{
+      background-color: white;
+    }
+    .matrix .element.disabled th{
+      vertical-align: middle;
+      color: rgb(153, 153, 153);
+      background-color: rgb(239, 239, 239);
+    }
+    .matrix .element th:first-child{
+      background-color: white;
+      color: black;
+    }
+    .matrix .concepts{
+      display: table-row;
+    }
+    .matrix .concepts.hidden{
+      display: none;
+    }
+    .matrix .concepts td{
+      background-color: #ffffff;
+      border-right: 2px solid #d3d3d3;
+      border-bottom: 2px solid #d3d3d3;
+    }
+    .matrix .concepts td:first-child{
+      border-right: 2px solid #d3d3d3;
+      border-bottom: none;
+    }
+    .matrix .concepts td:nth-child(2){
+      border-bottom: none;
+    }
+    .matrix td.white{
+      color: white;
+    }
+    .matrix td.white a{
+      color: rgb(243, 200, 69);
+    }
+    .matrix td.bg1{
+      background-color: rgb(232, 233, 238);
+    }
+    .matrix td.bg2{
+      background-color: rgb(208, 210, 222);
+    }
+    .matrix td.bg3{
+      background-color: rgb(185, 188, 207);
+    }
+    .matrix td.bg4{
+      background-color: rgb(161, 165, 190);
+    }
+    .matrix td.bg5{
+      background-color: rgb(208, 210, 222);
+    }
+    .matrix td.bg6{
+      background-color: rgb(185, 188, 207);
+    }
+    .matrix td.bg7{
+      background-color: rgb(161, 165, 190);
+    }
+    .matrix td.bg8{
+      background-color: rgb(137, 142, 172);
+    }
+    .matrix td.bg9{
+      background-color: rgb(185, 188, 207);
+    }
+    .matrix td.bg10{
+      background-color: rgb(161, 165, 190);
+    }
+    .matrix td.bg11{
+      background-color: rgb(137, 142, 172);
+    }
+    .matrix td.bg12{
+      background-color: rgb(114, 119, 157);
+    }
+    .matrix td.bg13{
+      background-color: rgb(161, 165, 190);
+    }
+    .matrix td.bg14{
+      background-color: rgb(137, 142, 172);
+    }
+    .matrix td.bg15{
+      background-color: rgb(114, 119, 157);
+    }
+    .matrix td.bg16{
+      background-color: rgb(102, 102, 153);
+    }
+    .matrix td.bg17{
+      background-color: rgb(137, 142, 172);
+    }
+    .matrix td.bg18{
+      background-color: rgb(114, 119, 157);
+    }
+    .matrix td.bg19{
+      background-color: rgb(102, 102, 153);
+    }
+    .matrix td.bg20{
+      background-color: rgb(67, 75, 124);
+    }
+    .matrix td.bg21{
+      background-color: rgb(114, 119, 157);
+    }
+    .matrix td.bg22{
+      background-color: rgb(102, 102, 153);
+    }
+    .matrix td.bg23{
+      background-color: rgb(67, 75, 124);
+    }
+    .matrix td.bg24{
+      background-color: rgb(45, 52, 107);
+    }
+  </style>
 </head>
 
 <body>
+<table class="matrix">
+  <thead>
+  <tr>
+    <th class="nostyle">
+      Design Institutions
+    </th>
+    <th class="nostyle">
+      Elements
+    </th>
+    <th class="nostyle">
+      Forms of Action
+    </th>
+    <th>
+      Equality
+    </th>
+    <th>
+      Equity
+    </th>
+    <th>
+      Justice
+    </th>
+    <th>
+      Liberation
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr id="Practices" class="element matrix_header">
+    <th>
+      Practices
+    </th>
+    <th>
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Labor</span>
+      </div>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Acknowledgement</span>
+    </td>
+    <td class="bg1">
+      <p><ul>
+      <li>Publicly acknowledge the lack of <b>BIPOC</b> representation and the firm's racist practices based on feedback provided directly by existing BIPOC staff﻿.</li>
+      <li>Publish a report on staff hiring over time and progress tracker</li></ul>
+      </p>
+    </td>
+    <td class="bg2">
+      <p>Publicly publish the harm done to <b>BIPOC</b> staff as well as publicly outlining methods of change﻿.</p>
+    </td>
+    <td class="bg3">
+      <p>Incorporate <b>BIPOC</b> staff in the rewriting of existing firm internal policies to better represent themselves﻿</p>
+    </td>
+    <td class="bg4">
+      <p>Commit to providing required in house training and/or funding for all staff to be trained in <b>critical race theory, design justice and community engagement.﻿</b></p>
+    </td>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accountability</span>
+    </td>
+    <td class="bg5">
+      <p><ul><li>Provide public salary ranges in job descriptions and public evaluation criteria for hiring and promotions, and share this information with your network</li>
+      <li>Commit to no unpaid internships</li></ul></p>
+    </td>
+    <td class="bg6">
+      <p>Publish salaries of all firm employees, ensure <b>BIPOC</b> staff are paid equally to white counterparts, and publicly state commitment to pay equity; include this language in employee offer letters/contracts.</p>
+    </td>
+    <td class="bg7">
+      <p>Establish clear, publicly accessible <b>executive standards on anti-racist practices</b> and process for removal of executives for any violation of these standards﻿.</p>
+    </td>
+    <td class="bg8">
+      <p><ul><li>Publicly commit to mandatory annual <b>critical race theory, design justice and community engagement</b> training as a requirement for all senior-level positions</li>
+      <li>Open up the firm to a community audit of projects, staffing and community engagement.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Representation</span>
+    </td>
+    <td class="bg9">
+      <p>Hire and actively recruit <b>BIPOC</b> designers﻿.</p>
+    </td>
+    <td class="bg10">
+      <p>Promote and maintain <b>BIPOC</b> leadership.</p>
+    </td>
+    <td class="bg11">
+      <p>Establish a <b>worker cooperative or worker empowered practice model﻿.</b></p>
+    </td>
+    <td class="bg12">
+      <p>Establish <b>BIPOC funded fellowship programming</b> for sustaining <b>BIPOC</b> recruitment and promotion; share and advocate for the integration of intergenerational knowledge systems in other design institutions.</p>
+    </td>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Reparations</span>
+    </td>
+    <td class="bg13">
+      <p>Provide immediate <b>reparative compensation</b> to <b>BIPOC</b> staff to match white staff salaries﻿.</p>
+    </td>
+    <td class="bg14">
+      <p>Redistribute a percentage of firm revenue to <b>BIPOC</b> staff (i.e. bonuses) and provide additional salaried compensation for <b>BIPOC</b>.</p>
+    </td>
+    <td class="bg15">
+      <p>Pay for continuing education and provide additional monetary incentives for BIPOC staff to elevate experience and position within the firm. Provide paid time off to volunteer and engage in local initiatives.</p>
+    </td>
+    <td class="bg16 white">
+      <p>Create a BIPOC-led and majority internal team that leads the firm in establishing where monies are focused and spent internally and externally on underserved and BIPOC-focused initiatives﻿.</p>
+    </td>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accessibility</span>
+    </td>
+    <td class="bg17">
+      <p>Provide paid time and <b>safe space</b> for <b>BIPOC</b> staff to express thoughts on firm management and leadership.</p>
+    </td>
+    <td class="bg18">
+      <p>Develop programs and policies to retain BIPOC employees within the firm. Retention efforts should include developing a mentorship program and support for professional licensure.</p>
+    </td>
+    <td class="bg19 white">
+      <p>Address and incorporate feedback from <b>BIPOC</b> staff on management and leadership, and institutionalize routine office-wide, transparent, leadership reviews.</p>
+    </td>
+    <td class="bg20 white">
+      <p><ul><li>Restructure firm leadership to become employee-owned with equal input on decision-making and investment.</li>
+      <li>Develop pathways for project and firm leadership from the community.</li>
+      <li>Develop a cohort of design advocate (community activist, advocates, design justice researchers) roles integral to the firm and its growth.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="concepts Practices">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Influence</span>
+    </td>
+    <td class="bg21">
+      <p>Incorporate an anti-racist evaluation as part of the hiring process﻿.</p>
+    </td>
+    <td class="bg22 white">
+      <p>Create an anti-racist resource library and institutionalize weekly mandatory readings for all staff. This includes allocating paid time to read and discuss the knowledge gained from these resources.</p>
+    </td>
+    <td class="bg23 white">
+      <p><ul><li>Establish contractually bound rules barring the firm from blocking any potential union development within the firm.</li>
+      <li>Develop clear leadership pathways that recognize the inherent barriers for <b>BIPOC</b> employees.</li></ul></p>
+    </td>
+    <td class="bg24 white">
+      <p><ul><li>Develop principal and partner level leadership roles within an employee-owned practice that are directly bound to the <a target="_blank" href="https://www.dapcollective.com/demands">Design Justice Demands</a>.</li>
+      <li>Commit to only working with firms that implement anti-racist practices sharing the experiences of the firm's journey towards anti-racism, and publicly presenting or workshopping a guide with lessons learned to the broader industry</li></ul></p>
+    </td>
+  </tr>
 
-  <table id="matrix">
-    <thead>
-      <tr>
-        <th>
-          Elements
-        </th>
-        <th>
-          <span>Key Concepts</span>
-        </th>
-        <th>
-          Equality
-        </th>
-        <th>
-          Equity
-        </th>
-        <th>
-          Justice
-        </th>
-        <th>
-          Liberation
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr id="collaboration" class="element">
-        <th>
-            Collaboration & Engagement
-            <p>
-              How can this organization partner with other organizations (especially ones operated largely by BIPOC)? What tools do we have that can help benefit these other organizations?
-            </p>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-      </tr>
-      <tr class="concepts collaboration">
-        <td>
+  <tr id="Finance" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Acknowledgement</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts collaboration">
-        <td>
+    </th>
+    <th>
+      Finance & Value
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr id="Process" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Accountability</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts collaboration">
-        <td>
+    </th>
+    <th>
+      Process & Engagement
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-        </td>
-        <td>
-          <span>Representation</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts collaboration">
-        <td>
+  <tr id="Membership" class="element matrix_header">
+    <th>
+      Organizations
+    </th>
+    <th>
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Membership</span>
+      </div>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Acknowledgement</span>
+    </td>
+    <td class="bg1">
+      <p>Publicly acknowledge the lack of <b>BIPOC</b> representation and the organization's racist practices based on feedback provided directly by existing <b>BIPOC staff</b>.</p>
+    </td>
+    <td class="bg2">
+      <p>Publicly publish the harm done to <b>BIPOC</b> staff and publicly outline methods for change.</p>
+    </td>
+    <td class="bg3">
+      <p>Incorporate <b>BIPOC</b> staff and members in the rewriting of the existing organization's internal policies to better represent <b>BIPOC voices</b>.</p>
+    </td>
+    <td class="bg4">
+      <p>Hold routine workshops and other outreach programs to educate staff and members on anti-racist practices.</p>
+    </td>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accountability</span>
+    </td>
+    <td class="bg5">
+      <p>Acknowledge institutional biases to force structural changes within existing policies and procedures, and to promote outcomes of equity as opposed to assimilation.</p>
+    </td>
+    <td class="bg6">
+      <p>Create a <b>safe space</b> for <b>BIPOC</b> members to share experiences. Establish a platform for these experiences to be heard and addressed by people in positions of power.﻿</p>
+    </td>
+    <td class="bg7">
+      <p>Establish clear, publicly accessible executive standards on anti-racist practices and process for removal of executives for any violation of these standards.</p>
+    </td>
+    <td class="bg8">
+      <p>Hire an external compliance team to create new organizational structures and monitoring methods to ensure injustices are not repeated.﻿</p>
+    </td>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Representation</span>
+    </td>
+    <td class="bg9">
+      <p>Hire and maintain a <b>proportional amount</b> of <b>BIPOC</b> within organization.</p>
+    </td>
+    <td class="bg10">
+      <p>Place designers on teams that match the demographics of the neighboring community and populations affected by organization's projects or research, especially in areas with predominantly <b>BIPOC</b> residents.</p>
+    </td>
+    <td class="bg11">
+      <p>Encourage non-BIPOC leaders to step down to allow space for <b>BIPOC</b> leadership.</p>
+    </td>
+    <td class="bg12">
+      <p>Nominate <b>BIPOC</b> members to leadership positions and provide transparent pathways to leadership to ensure underrepresented voices continue to be heard.</p>
+    </td>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Reparations</span>
+    </td>
+    <td class="bg13">
+      <p>Publish salaries for the organization to ensure <b>BIPOC</b> staff are paid equally to white counterparts and provide <b>reparative compensation</b> to <b>BIPOC</b> staff.</p>
+    </td>
+    <td class="bg14">
+      <p>Provide free memberships to <b>BIPOC</b> community members.</p>
+    </td>
+    <td class="bg15">
+      <p>Provide additional compensation to BIPOC staff in the form of continuing education and provide additional monetary incentives for BIPOC staff to elevate experience and position within the organization. Provide paid time off to staff to volunteer and engage in local initiatives.</p>
+    </td>
+    <td class="bg16 white">
+      <p>Create a BIPOC-led and majority membership team that leads the organization in establishing where funds are focused and spent internally and externally on underserved and BIPOC-focused initiatives.﻿</p>
+    </td>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accessibility</span>
+    </td>
+    <td class="bg17">
+      <p>Invest in retaining <b>BIPOC</b> membership within the organization. Retention efforts should include: developing a mentorship program, providing free memberships, and creating free workshops/panel access.﻿</p>
+    </td>
+    <td class="bg18">
+      <p>Incorporate the ideas and opinions shared and voiced by <b>BIPOC</b> staff and members into future programming and initiatives.</p>
+    </td>
+    <td class="bg19 white">
+      <p>Make room for <b>BIPOC</b> in leadership by expanding the budget to accommodate more BIPOC in leadership through altering the salaries of current non-BIPOC in leadership to free up money for new positions.</p>
+    </td>
+    <td class="bg20 white">
+      <p>Collaboratively develop and establish a non-hierarchical organization through the creation of a horizontal internal structure.</p>
+    </td>
+  </tr>
+  <tr class="concepts Membership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Influence</span>
+    </td>
+    <td class="bg21">
+      <p>Incorporate an anti-racist evaluation as part of the staff hiring and membership application process to ensure racist people are rejected.</p>
+    </td>
+    <td class="bg22 white">
+      <p>Create a free anti-racist resource library for staff and members and conduct free public forums for education and open dialogue.﻿</p>
+    </td>
+    <td class="bg23 white">
+      <p>Provide public programming on a regular schedule, outlining anti-racist practices and methodology for within the organization, as well as for outreach in the greater community via the organization's projects and programs.</p>
+    </td>
+    <td class="bg24 white">
+      <p>Maintain an anti-racism working group within the organization that educates members and extended networks on past injustices, sustains anti-racist initiatives, and keeps leadership, staff, members, and partner organizations accountable.</p>
+    </td>
+  </tr>
 
-        </td>
-        <td>
-          <span>Reparations</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
+  <tr id="Organization" class="element disabled">
+    <th>
 
-      <tr id="membership" class="element">
-        <th>
-          MEMBERSHIP & LEADERSHIP
-          <p>
-            How can organizations retain, increase, and welcome BIPOC participation? Are BIPOC leaders in decision making positions? Do BIPOC designers feel that they can express their opinions and feel listened to?
-          </p>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-      </tr>
-      <tr class="concepts membership">
-        <td>
+    </th>
+    <th>
+      Organization & Engagement
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr id="Operational" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Acknowledgement</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts membership">
-        <td>
+    </th>
+    <th>
+      Organization Operational Goals & Achievements
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-        </td>
-        <td>
-          <span>Accountability</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts membership">
-        <td>
+  <tr id="Staff" class="element matrix_header">
+    <th>
+      Academic Instituitons
+    </th>
+    <th>
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Staff</span>
+      </div>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Acknowledgement</span>
+    </td>
+    <td class="bg1">
+      <p>Publicly acknowledge the lack of representation and how the institution has been complicit in systemic racism based on feedback provided directly by <b>BIPOC</b> staff and student workers. This includes the evaluation of the institution's pedagogy, hiring practices, and student recruitment.</p>
+    </td>
+    <td class="bg2">
+      <p>Provide recurring anti-racist training and professional development courses for faculty.</p>
+    </td>
+    <td class="bg3">
+      <p>Require all faculty to present their understanding of racism in the built environment, urban policy, and design culture through their practice, research, continuing education, and curriculum.</p>
+    </td>
+    <td class="bg4">
+      <p>Provide regular public programming outlining anti-racist practices and methodologies within the institution.</p>
+    </td>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accountability</span>
+    </td>
+    <td class="bg5">
+      <p>Make actions, decisions, and conversations held at the leadership level accessible to the entire institutional body. This includes publishing meeting minutes, agendas, recorded meeting sessions and providing summary reports of actions to the student body and staff.</p>
+    </td>
+    <td class="bg6">
+      <p><ul><li>Publish a list of who is funding the institution's curricula, facilities, and scholarships, and identify which of those sources support racist agendas. Work to replace those funding sources.</li>
+      <li>Publish all faculty salaries and ensure all <b>BIPOC</b> affiliates are being rightly paid for their time.</li></ul></p>
+    </td>
+    <td class="bg7">
+      <p><ul><li>Publicly publish hiring practices and criteria for evaluating potential hires.</li>
+      <li>Include student input in the decision making of new hires, tenures, and leadership promotions.</li></ul></p>
+    </td>
+    <td class="bg8">
+      <p>Partner with existing anti-racist organizations to co-create a new organizational structure that serves as a permanent structure for accountability.</p>
+    </td>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Representation</span>
+    </td>
+    <td class="bg9">
+      <p>Evaluate the current racial make-up of the department and make this information easily accessible to the public.</p>
+    </td>
+    <td class="bg10">
+      <p><ul><li>Elevate faculty and staff who already have expertise in social justice, community development and other anti-racism work.</li>
+      <li>Join the network of educators to provide content for Design Justice curricula in <b><u><a target="_blank" href="https://darkmatteruniversity.org/">Dark Matter University.</a></u></b></li></ul></p>
+    </td>
+    <td class="bg11">
+      <p>Recruit and hire <b>BIPOC</b> faculty, fellows, and staff, including those from <b>misrepresented</b> communities of color, local leaders in social justice, and provide fellowship opportunities for designers/planners with focuses in social justice.</p>
+    </td>
+    <td class="bg12">
+      <p>Promote <b>BIPOC</b> to department chairs and higher-level positions. The institution's leadership should reflect the diversity of the populations the design field works with.</p>
+    </td>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Reparations</span>
+    </td>
+    <td class="bg13">
+      <p>Provide recurring funding for local community development projects led by BIPOC-led non-profits.</p>
+    </td>
+    <td class="bg14">
+      <p><b><a target="_blank" href="https://lbodre.ideo.com/">Ethically research</a></b> and evaluate the harm the institution has caused in its surrounding <b>BIPOC</b> communities in conjunction with building relationships with local community leaders.</p>
+    </td>
+    <td class="bg15">
+      <p>Develop programs and policies with local community leaders to rectify the harm inflicted by the institution on its surrounding <b>BIPOC</b> communities. This initiative should be led by students, staff, and social justice and community development departments within the institution.</p>
+    </td>
+    <td class="bg16 white">
+      <p>Provide education awards for all <b>BIPOC</b> alumni pursuing licensure, and students participating in the institution's anti-racist work.</p>
+    </td>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accessibility</span>
+    </td>
+    <td class="bg17">
+      <p>Create a safe environment for <b>BIPOC</b> faculty and staff to speak out against racism and discrimination experienced at the institution.</p>
+    </td>
+    <td class="bg18">
+      <p>Develop ground rules and disciplinary action for interactions during meetings and on various communication platforms to combat discrimination against <b>BIPOC</b> faculty.</p>
+    </td>
+    <td class="bg19 white">
+      <p>Restructure the hiring criteria for faculty, tenure, and leadership and creating pathways for promotion by thoroughly evaluating existing racist hiring practices.</p>
+    </td>
+    <td class="bg20 white">
+      <p>Provide ongoing resources and capital for <b>BIPOC</b> faculty to support their research, professional development, and practice.</p>
+    </td>
+  </tr>
+  <tr class="concepts Staff">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Influence</span>
+    </td>
+    <td class="bg21">
+      <p>Incorporate an anti-racist evaluation as part of the staff hiring application process to reject racist people.</p>
+    </td>
+    <td class="bg22 white">
+      <p>Create a free anti-racist resource library for staff and students, and conduct free public forums for education and open dialogue.</p>
+    </td>
+    <td class="bg23 white">
+      <p>Schedule monthly, transparent faculty, leadership, and staff reviews to discuss any feedback on performance and individual experiences, ask any on-boarding and logistical questions, and share helpful anti-racist resources and educational exercises.</p>
+    </td>
+    <td class="bg24 white">
+      <p>Maintain a department of anti-racism within the institution that educates on past injustices, sustains anti-racist initiatives, and keeps leadership, staff, and students accountable.</p>
+    </td>
+  </tr>
 
-        </td>
-        <td>
-          <span>Representation</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts membership">
-        <td>
+  <tr id="Curriculum" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Reparations</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
+    </th>
+    <th>
+      Curriculum & Pedagogy
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr id="Studio" class="element disabled">
+    <th>
 
+    </th>
+    <th>
+      Studio & Learning Culture
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
 
-      <tr id="goals" class="element">
-        <th>
-          Organization Operational Goals & Achievements
-          <p>
-            Is there more that this organization can do to maximize its efforts in being anti-racist? How can the organization formalize these efforts?﻿
-          </p>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-        <th>
-          <h4>o</h4>
-        </th>
-      </tr>
-      <tr class="concepts goals">
-        <td>
+  <tr id="Leadership" class="element matrix_header">
+    <th>
+      Local Governments
+    </th>
+    <th>
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Staff</span>
+      </div>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Acknowledgement</span>
+    </td>
+    <td class="bg1">
+      <p>Publicly acknowledge the lack of representation and how the department has been complicit in systemic racism based on feedback provided directly by <b>BIPOC</b> staff and the outside community.</p>
+    </td>
+    <td class="bg2">
+      <p>Train department staff to identify and the effects of institutional racism by implementing a racial equity framework developed by <b><a target="_blank" href="https://www.racialequityalliance.org/wp-content/uploads/2015/02/GARE-Resource_Guide.pdf">BIPOC-led social justice organizations</a>. Create a shared understanding among employees regarding goals for anti-racist practices.</b></p>
+    </td>
+    <td class="bg3">
+      <p>Incorporate <b>BIPOC</b> staff and local community leaders in the rewriting of the existing department's internal policies to better represent BIPOC voices.</p>
+    </td>
+    <td class="bg4">
+      <p>Outline fundamental changes to the department's overall structure and culture to create a more inclusive and just environment, while consulting <b>BIPOC</b> members throughout the process.</p>
+    </td>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accountability</span>
+    </td>
+    <td class="bg5">
+      <p>Outline and publish explicit directives to address racist shortcomings within the department to meet the needs of <b>BIPOC</b> staff. This includes all budget requests, hiring, and promotion practices.</p>
+    </td>
+    <td class="bg6">
+      <p>Create a safe space within the department for <b>BIPOC</b> staff to share experiences. Establish a platform for these experiences to be heard and addressed by people in positions of power.</p>
+    </td>
+    <td class="bg7">
+      <p>Create more opportunities for department directors to build relationships and liaise with grassroots organizations and organizers. Create a platform for organizers to share their views on the department's practices.</p>
+    </td>
+    <td class="bg8">
+      <p>Partner with existing anti-racist organizations to co-create a new organizational structure that serves as a permanent structure for accountability.</p>
+    </td>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Representation</span>
+    </td>
+    <td class="bg9">
+      <p>Evaluate the current racial make-up of the department and make this information easily accessible to the public.</p>
+    </td>
+    <td class="bg10">
+      <p>Recruit and hire <b>BIPOC</b> departmental staff.</p>
+    </td>
+    <td class="bg11">
+      <p>Focus efforts on recruiting city department staff from within traditionally disinvested areas to work in public service.﻿</p>
+    </td>
+    <td class="bg12">
+      <p>Maintain a system that provides stable investment for recruiting, nominating and hiring <b>BIPOC</b> to leadership positions to ensure <b>misrepresented</b> voices are heard.</p>
+    </td>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Reparations</span>
+    </td>
+    <td class="bg13">
+      <p>Evaluate salary ranges for department staff to ensure they are comparable to those for similar roles in similar sized cities, and ensure <b>BIPOC</b> staff are fairly compensated compared to their white counterparts.</p>
+    </td>
+    <td class="bg14">
+      <p>Provide additional salaried compensation to <b>BIPOC</b> staff to ensure retention and affirm their value within the department. </p>
+    </td>
+    <td class="bg15">
+      <p><ul><li>Pay for continuing education and provide additional financial incentives for BIPOC staff to elevate experience and position within the department.</li>
+      <li>Provide paid time off for staff to volunteer and become engaged in local initiative</li></ul></p>
+    </td>
+    <td class="bg16 white">
+      <p>Create a BIPOC-led internal department that leads the agency in establishing where funds are invested with a focus on <b>misrepresented</b> communities and equitable initiatives.</p>
+    </td>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Accessibility</span>
+    </td>
+    <td class="bg17">
+      <p>Create a <b>safe space</b> for <b>BIPOC</b> staff to speak out against racism and discrimination experienced at the department and promote agency to reconstruct procedures to ensure a just work environment.</p>
+    </td>
+    <td class="bg18">
+      <p>Create partnerships with the local public for paid summer internships that empower students to be champions of their communities and build a pipeline for diversifying the planning profession.﻿</p>
+    </td>
+    <td class="bg19 white">
+      <p><ul><li>Make room for <b>BIPOC</b> leaders within the department by expanding the budget to accommodate more <b>BIPOC</b> leadership positions.</li>
+      <li>Alter the salaries of current non-BIPOC leaders to free up money for BIPOC leadership positions.</li></ul></p>
+    </td>
+    <td class="bg20 white">
+      <p>Establish a non-hierarchical organization chart to move away from "positions of power" and to supportive structures of communal working groups. Incorporate existing grassroots organizations and elected at-large council representation in the working groups.</p>
+    </td>
+  </tr>
+  <tr class="concepts Leadership">
+    <td></td>
+    <td></td>
+    <td>
+      <span>Influence</span>
+    </td>
+    <td class="bg21">
+      <p>Conduct regular organizational assessments by a paid, external anti-racist consultant to evaluate the department's practices. Publish evaluations and findings to the public.</p>
+    </td>
+    <td class="bg22 white">
+      <p>Change existing hiring and retention policies/structure. Provide concrete steps with a timeline for implementation and incorporate public input.</p>
+    </td>
+    <td class="bg23 white">
+      <p>Maintain a group focused on anti-racism within the department that sustains equitable initiatives, reviews internal policy changes, and keeps leadership and staff accountable.</p>
+    </td>
+    <td class="bg24 white">
+      <p>Redraw district boundaries to ensure equitable funding across the city. Eliminate <b>district-based council representation</b> to provide incentives for stronger collaboration and the collective good of the city.</p>
+    </td>
+  </tr>
 
-        </td>
-        <td>
-          <span>Acknowledgement</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts goals">
-        <td>
+  <tr id="Policy" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Accountability</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts goals">
-        <td>
+    </th>
+    <th>
+      Policy & Investment
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr id="Planning" class="element disabled">
+    <th>
 
-        </td>
-        <td>
-          <span>Representation</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
-      <tr class="concepts goals">
-        <td>
+    </th>
+    <th>
+      Planning & Development
+    </th>
+    <th></th>
+    <th></th>
+    <th>(coming soon)</th>
+    <th></th>
+    <th></th>
+  </tr>
+  </tbody>
+</table>
 
-        </td>
-        <td>
-          <span>Reparations</span>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-        <td>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In tristique ante et dui efficitur mollis.</p>
-        </td>
-      </tr>
+<table class="matrix mobile">
+  <tbody>
+  <tr id="leadership_mobile" class="element matrix_header">
+    <th>Practices</th>
+    <th colspan="2">
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Labor</span>
+      </div>
+    </th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Acknowledgement</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p><ul>
+      <li>Publicly acknowledge the lack of <b>BIPOC</b> representation and the firm's racist practices based on feedback provided directly by existing BIPOC staff﻿.</li>
+      <li>Publish a report on staff hiring over time and progress tracker</li></ul>
+      </p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td><p>Publicly publish the harm done to <b>BIPOC</b> staff as well as publicly outlining methods of change﻿.</p></td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Incorporate <b>BIPOC</b> staff in the rewriting of existing firm internal policies to better represent themselves﻿</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Commit to providing required in house training and/or funding for all staff to be trained in <b>critical race theory, design justice and community engagement.﻿</b></p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accountability</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p><ul><li>Provide public salary ranges in job descriptions and public evaluation criteria for hiring and promotions, and share this information with your network</li>
+      <li>Commit to no unpaid internships</li></ul></p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td><p>Publish salaries of all firm employees, ensure <b>BIPOC</b> staff are paid equally to white counterparts, and publicly state commitment to pay equity; include this language in employee offer letters/contracts.</p></td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td><p>Establish clear, publicly accessible <b>executive standards on anti-racist practices</b> and process for removal of executives for any violation of these standards﻿.</p></td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td><p><ul><li>Publicly commit to mandatory annual <b>critical race theory, design justice and community engagement</b> training as a requirement for all senior-level positions</li>
+      <li>Open up the firm to a community audit of projects, staffing and community engagement.</li></ul></p></td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Representation</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Hire and actively recruit <b>BIPOC</b> designers﻿.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Promote and maintain <b>BIPOC</b> leadership.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Establish a <b>worker cooperative or worker empowered practice model﻿.</b></p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Establish <b>BIPOC funded fellowship programming</b> for sustaining <b>BIPOC</b> recruitment and promotion; share and advocate for the integration of intergenerational knowledge systems in other design institutions.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Reparations</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Provide immediate <b>reparative compensation</b> to <b>BIPOC</b> staff to match white staff salaries﻿.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Redistribute a percentage of firm revenue to <b>BIPOC</b> staff (i.e. bonuses) and provide additional salaried compensation for <b>BIPOC</b>.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Pay for continuing education and provide additional monetary incentives for BIPOC staff to elevate experience and position within the firm. Provide paid time off to volunteer and engage in local initiatives.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Create a BIPOC-led and majority internal team that leads the firm in establishing where monies are focused and spent internally and externally on underserved and BIPOC-focused initiatives﻿.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accessibility</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Provide paid time and <b>safe space</b> for <b>BIPOC</b> staff to express thoughts on firm management and leadership.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Develop programs and policies to retain BIPOC employees within the firm. Retention efforts should include developing a mentorship program and support for professional licensure.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Address and incorporate feedback from <b>BIPOC</b> staff on management and leadership, and institutionalize routine office-wide, transparent, leadership reviews.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p><ul><li>Restructure firm leadership to become employee-owned with equal input on decision-making and investment.</li>
+      <li>Develop pathways for project and firm leadership from the community.</li>
+      <li>Develop a cohort of design advocate (community activist, advocates, design justice researchers) roles integral to the firm and its growth.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Influence</th>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Incorporate an anti-racist evaluation as part of the hiring process﻿.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Create an anti-racist resource library and institutionalize weekly mandatory readings for all staff. This includes allocating paid time to read and discuss the knowledge gained from these resources.</p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p><ul><li>Establish contractually bound rules barring the firm from blocking any potential union development within the firm.</li>
+      <li>Develop clear leadership pathways that recognize the inherent barriers for <b>BIPOC</b> employees.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="leadership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p><ul><li>Develop principal and partner level leadership roles within an employee-owned practice that are directly bound to the <a target="_blank" href="https://www.dapcollective.com/demands">Design Justice Demands</a>.</li>
+      <li>Commit to only working with firms that implement anti-racist practices sharing the experiences of the firm's journey towards anti-racism, and publicly presenting or workshopping a guide with lessons learned to the broader industry</li></ul></p>
+    </td>
+  </tr>
 
-    </tbody>
-  </table>
+  <tr id="membership_mobile" class="element matrix_header">
+    <th>Organizations</th>
+    <th colspan="2" class="concept_header">
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Membership</span>
+      </div>
+    </th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Acknowledgement</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>Publicly acknowledge the lack of <<b>BIPOC</b> representation and the organization's racist practices based on feedback provided directly by existing <b>BIPOC staff</b></td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>Publicly publish the harm done to <b>BIPOC</b> staff and publicly outline methods for change.﻿</td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>Incorporate <b>BIPOC</b> staff and members in the rewriting of the existing organization's internal policies to better represent <b>BIPOC</b> voices.</td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>Hold routine workshops and other outreach programs to educate staff and members on anti-racist practices.</td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accountability</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Acknowledge institutional biases to force structural changes within existing policies and procedures, and to promote outcomes of equity as opposed to assimilation.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Create a <b>safe space</b> for <b>BIPOC</b> members to share experiences. Establish a platform for these experiences to be heard and addressed by people in positions of power.﻿</p></td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Establish clear, publicly accessible executive standards on anti-racist practices and process for removal of executives for any violation of these standards.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Hire an external compliance team to create new organizational structures and monitoring methods to ensure injustices are not repeated.﻿</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Representation</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Hire and maintain a <b>proportional amount</b> of <b>BIPOC</b> within organization.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Place designers on teams that match the demographics of the neighboring community and populations affected by organization's projects or research, especially in areas with predominantly <b>BIPOC</b> residents.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Encourage non-BIPOC leaders to step down to allow space for <b>BIPOC</b> leadership.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Nominate <b>BIPOC</b> members to leadership positions and provide transparent pathways to leadership to ensure underrepresented voices continue to be heard.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Reparations</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Publish salaries for the organization to ensure <b>BIPOC</b> staff are paid equally to white counterparts and provide <b>reparative compensation</b> to <b>BIPOC</b> staff.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Provide free memberships to <b>BIPOC</b> community members.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Provide additional compensation to BIPOC staff in the form of continuing education and provide additional monetary incentives for BIPOC staff to elevate experience and position within the organization. Provide paid time off to staff to volunteer and engage in local initiatives.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Create a BIPOC-led and majority membership team that leads the organization in establishing where funds are focused and spent internally and externally on underserved and BIPOC-focused initiatives.﻿</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accessibility</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Invest in retaining <b>BIPOC</b> membership within the organization. Retention efforts should include: developing a mentorship program, providing free memberships, and creating free workshops/panel access.﻿</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Incorporate the ideas and opinions shared and voiced by <b>BIPOC</b> staff and members into future programming and initiatives.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Make room for <b>BIPOC</b> in leadership by expanding the budget to accommodate more BIPOC in leadership through altering the salaries of current non-BIPOC in leadership to free up money for new positions.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Collaboratively develop and establish a non-hierarchical organization through the creation of a horizontal internal structure.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Influence</th>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Incorporate an anti-racist evaluation as part of the staff hiring and membership application process to ensure racist people are rejected.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Create a free anti-racist resource library for staff and members and conduct free public forums for education and open dialogue.﻿</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Provide public programming on a regular schedule, outlining anti-racist practices and methodology for within the organization, as well as for outreach in the greater community via the organization's projects and programs.</p>
+    </td>
+  </tr>
+  <tr class="membership_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Maintain an anti-racism working group within the organization that educates members and extended networks on past injustices, sustains anti-racist initiatives, and keeps leadership, staff, members, and partner organizations accountable.</p>
+    </td>
+  </tr>
+  <tr id="staff_mobile" class="element matrix_header">
+    <th>Academic Instituitions</th>
+    <th colspan="2" class="concept_header">
+      <div class="element_head">
+        <span class="caret"></span><span>Leadership & Staff</span>
+      </div>
+    </th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Acknowledgement</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Publicly acknowledge the lack of representation and how the institution has been complicit in systemic racism based on feedback provided directly by <b>BIPOC</b> staff and student workers. This includes the evaluation of the institution's pedagogy, hiring practices, and student recruitment.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Provide recurring anti-racist training and professional development courses for faculty.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Require all faculty to present their understanding of racism in the built environment, urban policy, and design culture through their practice, research, continuing education, and curriculum.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Provide regular public programming outlining anti-racist practices and methodologies within the institution.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accountability</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Make actions, decisions, and conversations held at the leadership level accessible to the entire institutional body. This includes publishing meeting minutes, agendas, recorded meeting sessions and providing summary reports of actions to the student body and staff.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p><ul><li>Publish a list of who is funding the institution's curricula, facilities, and scholarships, and identify which of those sources support racist agendas. Work to replace those funding sources.</li>
+      <li>Publish all faculty salaries and ensure all <b>BIPOC</b> affiliates are being rightly paid for their time.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p><ul><li>Publicly publish hiring practices and criteria for evaluating potential hires.</li>
+      <li>Include student input in the decision making of new hires, tenures, and leadership promotions.</li></ul></p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td><p>Partner with existing anti-racist organizations to co-create a new organizational structure that serves as a permanent structure for accountability.</p></td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Representation</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Evaluate the current racial make-up of the department and make this information easily accessible to the public.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p><ul><li>Elevate faculty and staff who already have expertise in social justice, community development and other anti-racism work.</li>
+      <li>Join the network of educators to provide content for Design Justice curricula in <b><u><a target="_blank" href="https://darkmatteruniversity.org/">Dark Matter University.</a></u></b></li></ul></p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Recruit and hire <b>BIPOC</b> faculty, fellows, and staff, including those from <b>misrepresented</b> communities of color, local leaders in social justice, and provide fellowship opportunities for designers/planners with focuses in social justice.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td><p>Promote <b>BIPOC</b> to department chairs and higher-level positions. The institution's leadership should reflect the diversity of the populations the design field works with.</p></td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Reparations</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Provide recurring funding for local community development projects led by BIPOC-led non-profits.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p><b><a target="_blank" href="https://lbodre.ideo.com/">Ethically research</a></b> and evaluate the harm the institution has caused in its surrounding <b>BIPOC</b> communities in conjunction with building relationships with local community leaders.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Develop programs and policies with local community leaders to rectify the harm inflicted by the institution on its surrounding <b>BIPOC</b> communities. This initiative should be led by students, staff, and social justice and community development departments within the institution.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Provide education awards for all <b>BIPOC</b> alumni pursuing licensure, and students participating in the institution's anti-racist work.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Accessibility</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>Create a safe environment for <b>BIPOC</b> faculty and staff to speak out against racism and discrimination experienced at the institution.</td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Develop ground rules and disciplinary action for interactions during meetings and on various communication platforms to combat discrimination against <b>BIPOC</b> faculty.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Restructure the hiring criteria for faculty, tenure, and leadership and creating pathways for promotion by thoroughly evaluating existing racist hiring practices.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Provide ongoing resources and capital for <b>BIPOC</b> faculty to support their research, professional development, and practice.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th colspan="2" class="concept_header">Influence</th>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equality</th>
+    <td>
+      <p>Incorporate an anti-racist evaluation as part of the staff hiring application process to reject racist people.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Equity</th>
+    <td>
+      <p>Create a free anti-racist resource library for staff and students, and conduct free public forums for education and open dialogue.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Justice</th>
+    <td>
+      <p>Schedule monthly, transparent faculty, leadership, and staff reviews to discuss any feedback on performance and individual experiences, ask any on-boarding and logistical questions, and share helpful anti-racist resources and educational exercises.</p>
+    </td>
+  </tr>
+  <tr class="staff_mobile concepts">
+    <td></td>
+    <th>Liberation</th>
+    <td>
+      <p>Maintain a department of anti-racism within the institution that educates on past injustices, sustains anti-racist initiatives, and keeps leadership, staff, and students accountable.</p>
+    </td>
+  </tr>
 
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.min.js"
-    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-    crossorigin="anonymous"></script>
-  <script src="js/main.js"></script>
+  </tbody>
+</table>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
+<script>
+  $(function() {
+    $(".matrix .concepts").toggleClass('hidden')
+    $(".matrix .element").on('click', function(){
+      if ($(this).hasClass('disabled')) return;
+      $(this).toggleClass('hidden');
+      $("." + $(this).attr('id')).toggleClass('hidden');;
 
+    });
+  });
+</script>
 </body>
-
 </html>
